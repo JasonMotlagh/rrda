@@ -1,0 +1,343 @@
+@import 'colors';
+@import 'fonts';
+
+//
+//	Mixins
+//
+@mixin navbar-default {
+	border-color: transparent;
+	border-style: none;
+	border-radius: 0px;
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+}
+
+@mixin margin-top-spacing($margin, $sign: 1) {
+	margin-top: $margin * $sign;
+}
+@mixin margin-bottom-spacing($margin, $sign: 1) {
+	margin-bottom: $margin * $sign;
+}
+
+@mixin padding-top-spacing($padding) {
+	padding-top: $padding;
+}
+@mixin padding-bottom-spacing($padding) {
+	padding-bottom: $padding;
+}
+
+@mixin border-bottom($size: 2px, $color: #ffffff, $style: solid) {
+	border-bottom: $size $color $style;
+}
+
+@mixin dropshadow($alpha: 0.5) {
+	-webkit-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, $alpha));
+	-moz-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, $alpha));
+	filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, $alpha));
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin language-choice($padding) {
+	font-size: .7em;
+	font-weight: 700;
+	padding: $padding;
+
+	a:link, a:visited {
+		color: $<color_variable>;
+	}
+
+	a:hover {
+		color: $<color_variable>;
+	}
+}
+
+/*
+Add custom mixins here
+*/
+
+
+/*********************************************************************
+	HTML Tag Classes
+*********************************************************************/
+body {
+	background-color: $color-white;
+	color: $color-black;
+	@include $<font_mixin_variable>;
+	font-weight: 300;
+	font-size: 16px
+}
+
+
+/*********************************************************************
+	Bootstrap overrides
+*********************************************************************/
+.navbar-default {
+	@include navbar-default;
+	margin: 0px;
+	z-index: 10;
+}
+
+.navbar-toggle {
+	border-style: none;
+	background-color: transparent;
+
+	:focus, :hover {
+		background-color: transparent;
+	}
+}
+
+.navbar-collapse {
+	padding-right: 0px;
+}
+
+.navbar-default {
+	.navbar-nav {
+		display: inline-block;
+		float: none;
+		font-weight: 700;
+
+		li {
+			a {
+				margin-left: 40px;
+				padding-right: 0px;
+				padding-left: 0px;
+				color: $<color_variable>;
+			}
+			a:hover  {
+				color: $<color_variable>;
+			}
+		}
+		li:first-child {
+			a {
+				margin-left: 0px;
+			}
+		}
+		li:last-child {
+			a {
+				
+			}
+		}
+
+		.active {
+			a, a:focus, a:hover {
+				@include navbar-default;
+				color: $<color_variable>;
+				cursor: default;
+			}
+		}
+	}
+}
+
+.navbar-fixed-top{
+	height: auto;
+	padding: 5px 0px;
+}
+
+.navbar-brand {
+	padding-top: 0px;
+	float: none;
+}
+
+.navbar-link {
+	cursor: pointer;
+}
+
+.navbar-default {
+	.navbar-toggle{
+		border-color: transparent;
+		border: none;
+		background-color: transparent;
+
+		.navbar-toggle:hover {
+			background-color: transparent;
+		}
+		.navbar-toggle:focus {
+			background-color: transparent;
+		}
+
+		.icon-bar {
+			background-color: $<color_variable>;
+		}
+	}
+}
+
+.container-fluid {
+	.jumbotron {
+		padding: 0px;
+		margin-bottom: 10px;
+		@include border-radius(0px);
+		background-color: #ffffff;
+	}
+}
+
+.form-control {
+	border-color: transparent;
+	border-style: none;
+	border-width: none;
+	@include border-radius(0px);
+	box-shadow: none;
+}
+
+
+/*********************************************************************
+	Custom Classes
+*********************************************************************/
+/****
+	Custom Carousel
+****/
+.carousel.fade {
+	opacity: 1;
+}
+.carousel.fade .item {
+	transition: opacity ease-out 2s;
+	left: 0;
+	opacity: 0; /* hide all slides */
+	top: 0;
+	position: absolute;
+	width: 100%;
+	display: block;
+}
+
+.carousel.fade .item:first-child {
+	top: auto;
+	opacity: 1; /* show first slide */
+	position: relative;
+}
+
+.carousel.fade .item.active {
+	opacity: 1;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.no-margins {
+	margin: 0px;
+}
+
+.no-padding {
+	padding: 0px;
+}
+.no-left-padding {
+	padding-left: 0px;
+}
+.no-right-padding {
+	padding-right: 0px;
+}
+
+.navbar-styling {
+	padding: 0px;
+}
+
+.language-choice {
+	@include language-choice(0px);
+}
+.full-language-choice {
+	display: block;
+}
+.mobile-language-choice {
+	display: none;
+}
+
+.small-top-margin {
+	@include margin-top-spacing(10px);
+}
+.small-bottom-margin {
+	@include margin-bottom-spacing(10px);
+}
+
+.large-top-margin {
+	@include margin-top-spacing(20px);
+}
+.large-bottom-margin {
+	@include margin-bottom-spacing(20px);
+}
+
+.small-top-negative-margin {
+	@include margin-top-spacing(10px, -1);
+}
+.large-top-negative-margin {
+	@include margin-top-spacing(20px, -1);
+}
+
+.small-top-padding {
+	@include padding-top-spacing(10px);
+}
+.small-bottom-padding {
+	@include padding-bottom-spacing(10px);
+}
+
+.large-top-padding {
+	@include padding-top-spacing(20px);
+}
+.large-bottom-padding {
+	@include padding-bottom-spacing(20px);
+}
+
+.object-dropshadow {
+	@include dropshadow();
+}
+
+.form-container {
+	padding: 20px;
+}
+
+
+/*********************************************************************
+	Custom Bullets
+*********************************************************************/
+/* .bullet-list {
+	padding: 0px;
+}
+.list-ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.list-li {
+	padding-left: 1em; 
+	text-indent: -.7em;
+	font-weight: bold;
+}
+.list-li::before {
+	content: "\2022";
+	font-size: 16px;
+	padding-right: 7px;
+}
+.bullets-color::before {
+	color: #32c6f4;
+} */
+/*********************************************************************
+*********************************************************************/
+
+
+.btn-submit {
+	background-color: $<color_variable>;
+	background-image: none;
+	text-shadow: none;
+	box-shadow: none;
+	color: $<color_variable>;
+	font-size: 1em;
+	padding: 10px 20px;
+	border-color: transparent;
+}
+
+.myMap {
+	width: 100%;
+	height: 200px;
+	@include margin-top-spacing(10px);
+}
+
+.footer-padding {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
